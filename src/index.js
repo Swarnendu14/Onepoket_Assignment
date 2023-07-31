@@ -1,19 +1,25 @@
-const express=require('express');
+const express = require('express');
+const fs = require('fs');
 
 const app = express();
 
-app.use(express.json());
+const filename = 'data.txt';
+let wordCount=0;
 
-app.use('/',(req,res)=>{
-    const array=[2,6,14,67,11,7,23,21,1];
-    let sumOfArrayElements=0;
-    console.log("Array elements => "+array);
-    for(let i=0; i<array.length; i++)
-    {
-        sumOfArrayElements+=array[i];
+fs.readFile(filename, 'utf8', (err, data) => {
+    if (err) {
+        console.log(`Error: ${err.message}`);
+        return
     }
-    console.log("Sum of all the array elements =>"+sumOfArrayElements);
-    res.status(200).send({status:true,Array:array,ArrayElementsSum:sumOfArrayElements});
+    wordCount = data.trim().split(/\s+/).length;
+    console.log(`Total word count in "${filename}" : ${wordCount}`);
 })
-const PORT=3000;
-app.listen(PORT,()=>{console.log('listening on port '+PORT)})
+
+app.use('/', async (req, res) => {
+    if(wordCount==0){
+        res.status(200).send({ status: true, Message:"Empty file" });
+    }
+    res.status(200).send({ status: true, WordCount: wordCount });
+})
+const PORT = 3000;
+app.listen(PORT, () => { console.log('listening on port ' + PORT) })
