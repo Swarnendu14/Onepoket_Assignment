@@ -15,7 +15,7 @@ fs.readFile(filename, 'utf8', (err, data) => {
     console.log(`Total word count in "${filename}" : ${wordCount}`);
 })
 
-app.use('/', async (req, res) => {
+app.use('/',(req, res) => {
     if(wordCount==0){
         res.status(200).send({ status: true, Message:"Empty file" });
     }
