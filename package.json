@@ -1,0 +1,16 @@
+{
+  "name": "task-1",
+  "version": "1.0.0",
+  "description": "```\r Task 1: Basic Node.js Server\r Create a simple Node.js server that listens on port 3000 and responds with \"Hello, World!\" for all incoming HTTP requests. You can use any library or framework of your choice.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
+  }
+}
